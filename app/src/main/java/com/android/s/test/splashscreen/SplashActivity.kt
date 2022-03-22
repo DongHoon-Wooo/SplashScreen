@@ -10,7 +10,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 class SplashActivity : AppCompatActivity() {
     private var isCompleted = false
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen().setKeepOnScreenCondition{
+        installSplashScreen().setKeepOnScreenCondition{
             if (isCompleted) {
                 startMainActivity()
             }
