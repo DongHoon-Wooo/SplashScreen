@@ -10,7 +10,13 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 class SplashActivity : AppCompatActivity() {
     private var isCompleted = false
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
+        val splashScreen = installSplashScreen().setKeepOnScreenCondition{
+            if (isCompleted) {
+                startMainActivity()
+            }
+            true
+        }
+
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -18,15 +24,6 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             isCompleted = true
         }, 2000)
-
-        splashScreen.setKeepVisibleCondition {
-            if (isCompleted) {
-                startMainActivity()
-                false
-            } else {
-                true
-            }
-        }
     }
 
     private fun startMainActivity() {
